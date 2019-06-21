@@ -1,11 +1,11 @@
-## CardSim
+# CardSim
 Card Processing simulator service
 
-# Pre=requisites
+## Pre-requisites
 - Install Node.JS 10.x
 
-# Running application
+## Running application
 - `git clone https://github.com/gianninasd/cardSim.git`
 
-# References
+## References
 - https://nodejs.org/en/
