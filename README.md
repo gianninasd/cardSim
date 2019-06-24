@@ -1,5 +1,5 @@
 # CardSim
-Card Processing simulator service written in Typescript, running on NodeJS
+Card Processing simulator service written in Typescript, running on NodeJS. Make use of Express and Jest open source libraries.
 
 ## Pre-requisites
 - Install Git
@@ -17,9 +17,12 @@ Now follow these steps to launch both application:
 
 You will see processing output on your console and once you see `Card Simulator listening on port 3000!`, open a browser window and navigate to http://localhost:3000
 
+To run only the unit tests, from the console window run `npm run test`
+
 ## References
 Below are some reference web sites
 - https://nodejs.org/en/
 - https://docs.npmjs.com/files/package.json
 - https://www.typescriptlang.org/
 - https://expressjs.com/
+- https://jestjs.io/en/

@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "a49f3dfd-f8aa-4638-9240-c823c7ed1470",
+		"name": "CardSim",
+		"description": "Local Card Simulator running on Node.JS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"merchantRefNum\": \"good1\",\r\n  \"amount\": 500,\r\n  \"settleWithAuth\": \"true\",\r\n  \"card\": {\r\n    \"cardNum\": \"5258975911635382\",\r\n    \"cardExpiry\": {\r\n      \"month\": \"09\",\r\n      \"year\": \"2021\"\r\n    }\r\n  },\r\n  \"billingDetails\": {\r\n  \t\"zip\": \"H8P3S2\"\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
