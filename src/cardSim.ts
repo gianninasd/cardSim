@@ -23,10 +23,10 @@ function validateReq(req:any, res:any, next:any) {
 
 // used to catch and return any errors
 function defaultErrorHandler(err:any, req:any, res:any, next:any) {
-  console.log("[" + req.guid + "] Error occured: " + err.message)
+  console.log(`[${req.guid}] Error occured: ${err.message}`)
   res.status(500)
   res.set("Content-Type", "application/json")
-  res.send({ error: err.message })
+  res.send({ id: req.guid, error: err.message })
 }
 
 // setup parsing and middleware routing
@@ -37,14 +37,16 @@ app.use(defaultErrorHandler);
 
 // handle GET requests
 app.get("/", (req: any, res: any) => {
-  res.send("Card Simulator 0.1");
+  res.status(200)
+  res.set("Content-Type", "text/plain")
+  res.send("Card Simulator 0.1")
 });
 
 // handle POST requests
 app.post("/", (req:any, res:any) => {
   // TODO validate body
 
-  console.log("[" + req.guid + "] Incoming request from " + req.ip);
+  console.log(`[${req.guid}] Incoming request from ${req.ip}`);
   console.log("body>> " + req.body);
   let o:any = req.body;
   console.log("merchantRefNum>> " + o.merchantRefNum);
