@@ -1,6 +1,7 @@
 import express from "express";
 import uuidv4 from "uuid/v4";
 
+import {CardRequest} from "./CardRequest";
 import {AuthProcessor} from "./AuthProcessor";
 
 const app = express();
@@ -48,18 +49,16 @@ app.post("/", (req: any, res: any) => {
   // TODO validate body
 
   console.log(`[${req.guid}] Incoming request from ${req.ip}`);
-  console.log("body>> " + req.body);
-  const o: any = req.body;
-  console.log("merchantRefNum>> " + o.merchantRefNum);
 
-  if ( o.merchantRefNum ) {
-    console.log("merchantRefNum>> it exists");
-  }
+  // get raw json object and parse it
+  const rawData: any = req.body;
+  let cardRequest:CardRequest = CardRequest.parse(req.guid, rawData);
 
-  console.log("cardNum>> " + o.card.cardNum);
-
+  // run thru simulator and generate a response
   const processor = new AuthProcessor();
-  const response = processor.process( req.guid );
+  const response = processor.process( cardRequest );
+
+  console.log(`[${req.guid}] Response was ${response.status}`);
 
   res.status(200);
   res.set("Content-Type", "application/json");
