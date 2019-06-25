@@ -54,7 +54,7 @@ export class AuthProcessor {
       settleWithAuth: req.settleWithAuth,
       amount: req.amount,
       card: {
-        brand: "VI",
+        brand: req.cardBrand,
         cardEnding: req.cardNum.substr(12)
       },
       authCode: "A1608Z"
