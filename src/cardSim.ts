@@ -2,6 +2,7 @@ import express from "express";
 import uuidv4 from "uuid/v4";
 
 import {CardRequest} from "./CardRequest";
+import {CardResponse} from "./CardResponse";
 import {AuthProcessor} from "./AuthProcessor";
 
 const app = express();
@@ -37,14 +38,14 @@ app.use(initProcessing);
 app.use(validateReq);
 app.use(defaultErrorHandler);
 
-// handle GET requests
+// GET request handler
 app.get("/", (req: any, res: any) => {
   res.status(200);
   res.set("Content-Type", "text/plain");
   res.send("Card Simulator 0.1");
 });
 
-// handle POST requests
+// POST request handler
 app.post("/", (req: any, res: any) => {
   // TODO validate body
 
@@ -56,13 +57,13 @@ app.post("/", (req: any, res: any) => {
 
   // run thru simulator and generate a response
   const processor = new AuthProcessor();
-  const response = processor.process( cardRequest );
+  const response:CardResponse = processor.process( cardRequest );
 
-  console.log(`[${req.guid}] Response was ${response.status}`);
+  console.log(`[${req.guid}] Response was ${response.rawData.decision}`);
 
-  res.status(200);
+  res.status(response.httpStatusCode);
   res.set("Content-Type", "application/json");
-  res.send(response);
+  res.send(response.rawData);
 });
 
 // start the application listener
