@@ -1,5 +1,6 @@
 import express from "express";
 import uuidv4 from "uuid/v4";
+import os from "os";
 
 import {CardRequest} from "./CardRequest";
 import {CardResponse} from "./CardResponse";
@@ -68,5 +69,5 @@ app.post("/", (req: any, res: any) => {
 
 // start the application listener
 app.listen(port, () => {
-  console.log(`Card Simulator listening on port ${port}!`);
+  console.log(`Card Simulator running on ${os.platform} (${os.release}), listening on port ${port}! `);
 });
