@@ -7,11 +7,11 @@ import {CardResponse} from "./CardResponse";
 export class AuthProcessor {
 
   // generate either a successful or error response based on the amount
-  public process( req: CardRequest ):CardResponse {
-    let response:CardResponse;
-    let rawResponse:any;
+  public process( req: CardRequest ): CardResponse {
+    let response: CardResponse;
+    let rawResponse: any;
 
-    switch( req.amount ) {
+    switch ( req.amount ) {
       case 5:
         rawResponse = this.generateError(req, 1005, "Transaction declined by the bank");
         response = new CardResponse(400, rawResponse);
@@ -29,16 +29,17 @@ export class AuthProcessor {
   }
 
   // generates an error response object
-  private generateError(req: CardRequest, code:number, message:string):object {
-    let resp: object = {
+  private generateError(req: CardRequest, code: number, message: string): object {
+    const resp: object = {
       id: req.id,
       decision: "FAILED",
+      merchantRefNum: req.merchantRefNum,
       txnTime: new Date(),
       settleWithAuth: req.settleWithAuth,
       amount: req.amount,
       error: {
-        code: code,
-        message: message
+        code,
+        message
       }
     };
 
@@ -46,10 +47,11 @@ export class AuthProcessor {
   }
 
   // generates a successful response object
-  private generateSuccess(req: CardRequest):object {
-    let resp: object = {
+  private generateSuccess(req: CardRequest): object {
+    const resp: object = {
       id: req.id,
       decision: "COMPLETED",
+      merchantRefNum: req.merchantRefNum,
       txnTime: new Date(),
       settleWithAuth: req.settleWithAuth,
       amount: req.amount,

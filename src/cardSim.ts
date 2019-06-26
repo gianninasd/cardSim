@@ -1,10 +1,12 @@
 import express from "express";
-import uuidv4 from "uuid/v4";
 import os from "os";
+import uuidv4 from "uuid/v4";
 
+import {AuthProcessor} from "./AuthProcessor";
+import {AuthValidator} from "./AuthValidator";
 import {CardRequest} from "./CardRequest";
 import {CardResponse} from "./CardResponse";
-import {AuthProcessor} from "./AuthProcessor";
+import {ValidationError} from "./ValidationError";
 
 const app = express();
 const port = 3000;
@@ -13,6 +15,8 @@ const port = 3000;
 function initProcessing(req: any, res: any, next: any) {
   const guid = uuidv4(); // generate request GUID
   req.guid = guid;
+
+  console.log(`[${req.guid}] Incoming request from ${req.ip}`);
   next();
 }
 
@@ -21,7 +25,18 @@ function validateReq(req: any, res: any, next: any) {
   if ( !req.is("application/json") ) {
     throw new Error("Content-Type is not application/json");
   } else {
-    next();
+    const val: AuthValidator = new AuthValidator();
+    const result: ValidationError[] = val.validate(req.body);
+
+    if ( result.length > 0 ) {
+      // stop and return if there any validation errors
+      console.log(`[${req.guid}] Request validation failed: ${result[0].message}`);
+      res.status(400);
+      res.set("Content-Type", "application/json");
+      res.send({ id: req.guid, error: result[0].message });
+    } else {
+      next();
+    }
   }
 }
 
@@ -48,17 +63,13 @@ app.get("/", (req: any, res: any) => {
 
 // POST request handler
 app.post("/", (req: any, res: any) => {
-  // TODO validate body
-
-  console.log(`[${req.guid}] Incoming request from ${req.ip}`);
-
   // get raw json object and parse it
   const rawData: any = req.body;
-  let cardRequest:CardRequest = CardRequest.parse(req.guid, rawData);
+  const cardRequest: CardRequest = CardRequest.parse(req.guid, rawData);
 
   // run thru simulator and generate a response
   const processor = new AuthProcessor();
-  const response:CardResponse = processor.process( cardRequest );
+  const response: CardResponse = processor.process( cardRequest );
 
   console.log(`[${req.guid}] Response was ${response.rawData.decision}`);
 
