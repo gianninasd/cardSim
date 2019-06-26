@@ -12,6 +12,11 @@ Now to get the code and install the dependencies perform the following commands:
 
 ## Running application
  Open a console and run `npm run start` and you will see processing output on your console and once you see `Card Simulator listening on port 3000!`, open a browser window and navigate to http://localhost:3000
+ 
+Amount | HTTP Response Code | Message
+------------ | ------------- | -------------
+5 | 400 | xx
+7 | 400 | xx
 
 In order to simulate an error response, set the amount to a value of either `5` or `7`
 
