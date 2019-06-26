@@ -2,20 +2,20 @@
  * Represents an incoming card request
  */
 export class CardRequest {
-  id:string;
-  merchantRefNum:string;
-  amount:number;
-  settleWithAuth:boolean;
-  zip:string;
+  public id:string;
+  public merchantRefNum:string;
+  public amount:number;
+  public settleWithAuth:boolean;
+  public zip:string;
 
-  cardBrand:string;
-  cardNum:string;
-  cardExpiryMonth:string;
-  cardExpiryYear:string;
+  public cardBrand:string;
+  public cardNum:string;
+  public cardExpiryMonth:string;
+  public cardExpiryYear:string;
 
   // converts raw json object into this instance
-  static parse( id:string, obj:any ):CardRequest {
-    let req:CardRequest = new CardRequest();
+  public static parse( id:string, obj:any ):CardRequest {
+    const req:CardRequest = new CardRequest();
     req.id = id;
     req.merchantRefNum = obj.merchantRefNum;
     req.amount = obj.amount;
@@ -31,8 +31,8 @@ export class CardRequest {
   }
 
   // determines the card brand from the number
-  static parseBrand( cardNum:any ):string {
-    let firstDigit = cardNum.substring(0, 1);
+  public static parseBrand( cardNum:any ):string {
+    const firstDigit = cardNum.substring(0, 1);
     let brand:string = "";
 
     switch( firstDigit ) {

@@ -5,8 +5,12 @@
   ],
   "jsRules": {},
   "rules": {
+    "member-ordering": [true, {"order": "fields-first"}],
     "no-console": [false],
-    "trailing-comma": [false]
+    "object-literal-sort-keys": false,
+    "trailing-comma": [false],
+    "typedef-whitespace": false,
+    "whitespace": false
   },
   "rulesDirectory": []
 }
