@@ -15,7 +15,7 @@ Now to get the code and install the dependencies perform the following commands:
  
  ```
  {
-  "merchantRefNum": "good1",
+  "merchantRefNum": "invoice-1",
   "amount": 1800,
   "settleWithAuth": "true",
   "card": {
@@ -26,17 +26,17 @@ Now to get the code and install the dependencies perform the following commands:
     }
   },
   "billingDetails": {
-  	"zip": "H8P3S2"
+    "zip": "H8P3S2"
   }
 }
  ```
  
- If you wish to simulator a failed response, use the amounts mentioned below.
+ If you wish to simulate a failed response, use one of the amounts mentioned below.
  
 Amount | HTTP Response Code | Error Code | Decision | Description
 ------------ | ------------- | ------------- | ------------- | -------------
 5 | 400 | 1005 | FAILED | Transaction declined by the bank
-7 | 400 | 1005 | FAILED | Insufficient funds
+7 | 400 | 1007 | FAILED | Insufficient funds
 *Anything else* | 200 | *n/a* | COMPLETED | *n/a*
 
 To run only the unit tests, from the console window run `npm run test`
