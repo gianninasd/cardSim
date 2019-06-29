@@ -80,5 +80,6 @@ app.post("/", (req: any, res: any) => {
 
 // start the application listener
 app.listen(port, () => {
-  console.log(`Card Simulator running on ${os.platform} (${os.release}), listening on port ${port}! `);
+  const appVersion = process.env.npm_package_version;
+  console.log(`Card Simulator ${appVersion} running on ${os.platform} (${os.release}), listening on port ${port}! `);
 });

@@ -11,7 +11,7 @@ Now to get the code and install the dependencies perform the following commands:
 - Open a console and run `npm install`
 
 ## Running application
- Open a console and run `npm run start` and you will see processing output on your console and once you see `Card Simulator listening on port 3000!`, use your favorite REST client (either Postman or Insomnia) to send a request with the following JSON payload:
+ Open a console and run `npm run start` and you will see processing output on your console and once you see `Card Simulator 1.0.0 running on win32 (10.0.17134), listening on port 3000!`, use your favorite REST client (either Postman or Insomnia) to send a request with the following JSON payload:
  
  ```
  {
