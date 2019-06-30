@@ -45,9 +45,20 @@ Amount | Decision | HTTP Response Code | Error Code | Description
 
 To run only the unit tests, from the console window run `npm run test`
 
+## Running within a Docker container
+In order to run the Card Processing simulator service within a Docker container, the first thing you need to do is build your image file by running the following from a console: `docker build -t <your docker username>/cardsim .`
+
+Once that is done, due to a bug you might need to restart Docker before the command completes successfully. Once completed, run `docker images` to see that your image file was created successfully.
+
+Now to run the application, run `docker run -p 49160:3000 -d <your docker username>/cardsim`
+
+To confirm it is up-and-running, run `docker ps` and you should see the ID for your container, port mapping information and the up time. To see the log output, you can run `docker logs <container id>` every once in a while to see the most recent output.
+
 ## References
 Below are some reference web sites
 - https://nodejs.org/en/
+  - https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
+  - https://buddy.works/guides/how-dockerize-node-application
 - https://docs.npmjs.com/files/package.json
 - https://www.typescriptlang.org/
 - https://expressjs.com/
