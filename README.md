@@ -50,10 +50,10 @@ In order to run the Card Processing simulator service within a Docker container,
 1. `docker build -t <your docker username>/cardsim .` to build your image file
 2. `docker images` to confirm your image file was created successfully
 3. `docker run -p 49160:3000 -d <your docker username>/cardsim` to start the application
-4. `docker ps` to confirm it is up-and-running; you should see the container, port mapping information and the up time
+4. `docker ps` to confirm it is up-and-running; you should see the container id, port mapping information and the up time
 5. `docker logs <container id>` every once in a while to see the most recent output
 
-*Note: You might encounter error messages the first times you run steps 1 or 3, this is due to Docker bugs, so just restart Docker and try again at step 1 or 3*
+*Note: You might encounter error messages the first times you run steps 1 or 3, this is due to issues with Docker, to resolve them just restart Docker at those steps and execute them again*
 
 ## References
 Below are some reference web sites
