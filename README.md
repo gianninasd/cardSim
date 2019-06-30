@@ -1,5 +1,5 @@
 # Card Simulator Service
-Card Processing simulator service written in Typescript, running on NodeJS. Makes use of Express and Jest open source libraries.
+Card Processing simulator service written in Typescript, running on NodeJS. Makes use of Express and Jest open source libraries. In addition there are instructions below on how to run it from within a Docker container.
 
 ## Pre-requisites
 - Install Git
@@ -46,13 +46,14 @@ Amount | Decision | HTTP Response Code | Error Code | Description
 To run only the unit tests, from the console window run `npm run test`
 
 ## Running within a Docker container
-In order to run the Card Processing simulator service within a Docker container, the first thing you need to do is build your image file by running the following from a console: `docker build -t <your docker username>/cardsim .`
+In order to run the Card Processing simulator service within a Docker container, follow the steps below from a console:
+1. `docker build -t <your docker username>/cardsim .` to build your image file
+2. `docker images` to confirm your image file was created successfully
+3. `docker run -p 49160:3000 -d <your docker username>/cardsim` to start the application
+4. `docker ps` to confirm it is up-and-running; you should see the container, port mapping information and the up time
+5. `docker logs <container id>` every once in a while to see the most recent output
 
-Once that is done, due to a bug you might need to restart Docker before the command completes successfully. Once completed, run `docker images` to see that your image file was created successfully.
-
-Now to run the application, run `docker run -p 49160:3000 -d <your docker username>/cardsim`
-
-To confirm it is up-and-running, run `docker ps` and you should see the ID for your container, port mapping information and the up time. To see the log output, you can run `docker logs <container id>` every once in a while to see the most recent output.
+*The first times you run steps 1 or 3, you might errors, this is due to a Docker bug, so just restart Docker and try again, it should resolve the problem*
 
 ## References
 Below are some reference web sites
