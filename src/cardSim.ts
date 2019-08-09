@@ -22,21 +22,27 @@ function initProcessing(req: any, res: any, next: any) {
 
 // validates the incoming request
 function validateReq(req: any, res: any, next: any) {
-  if ( !req.is("application/json") ) {
-    throw new Error("Content-Type is not application/json");
-  } else {
-    const val: AuthValidator = new AuthValidator();
-    const result: ValidationError[] = val.validate(req.body);
-
-    if ( result.length > 0 ) {
-      // stop and return if there any validation errors
-      console.log(`[${req.guid}] Request validation failed: ${result[0].message}`);
-      res.status(400);
-      res.set("Content-Type", "application/json");
-      res.send({ id: req.guid, error: result[0].message });
-    } else {
+  switch( req.method ) {
+    case "GET":
       next();
-    }
+      break;
+    default:
+      if ( !req.is("application/json") ) {
+        throw new Error("Content-Type is not application/json");
+      } else {
+        const val: AuthValidator = new AuthValidator();
+        const result: ValidationError[] = val.validate(req.body);
+
+        if ( result.length > 0 ) {
+          // stop and return if there any validation errors
+          console.log(`[${req.guid}] Request validation failed: ${result[0].message}`);
+          res.status(400);
+          res.set("Content-Type", "application/json");
+          res.send({ id: req.guid, error: result[0].message });
+        } else {
+          next();
+        }
+      }
   }
 }
 
@@ -56,9 +62,10 @@ app.use(defaultErrorHandler);
 
 // GET request handler
 app.get("/", (req: any, res: any) => {
+  const appVersion = process.env.npm_package_version;
   res.status(200);
   res.set("Content-Type", "text/plain");
-  res.send("Card Simulator 0.1");
+  res.send(`Card Simulator ${appVersion}`);
 });
 
 // POST request handler
