@@ -19,7 +19,30 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"merchantRefNum\": \"good1\",\r\n  \"amount\": 500,\r\n  \"settleWithAuth\": \"true\",\r\n  \"card\": {\r\n    \"cardNum\": \"5258975911635382\",\r\n    \"cardExpiry\": {\r\n      \"month\": \"09\",\r\n      \"year\": \"2021\"\r\n    }\r\n  },\r\n  \"billingDetails\": {\r\n  \t\"zip\": \"H8P3S2\"\r\n  }\r\n}"
+					"raw": "{\r\n  \"merchantRefNum\": \"good1\",\r\n  \"amount\": 1500,\r\n  \"settleWithAuth\": \"true\",\r\n  \"card\": {\r\n    \"cardNum\": \"5500000000000004\",\r\n    \"cardExpiry\": {\r\n      \"month\": \"09\",\r\n      \"year\": \"2021\"\r\n    }\r\n  },\r\n  \"billingDetails\": {\r\n  \t\"zip\": \"H8P3S2\"\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Auth",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://localhost:3000/",
