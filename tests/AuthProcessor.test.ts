@@ -13,7 +13,7 @@ test("process to return a success", () => {
   
   expect(response.rawData.id).toBe("some-id");
   expect(response.rawData.txnTime).not.toBeNull();
-  expect(response.rawData.decision).toBe("COMPLETED");
+  expect(response.rawData.status).toBe("COMPLETED");
   expect(response.rawData.authCode).not.toBeNull();
 });
 
@@ -28,6 +28,6 @@ test("process to return an error", () => {
   
   expect(response.rawData.id).toBe("some-id");
   expect(response.rawData.txnTime).not.toBeNull();
-  expect(response.rawData.decision).toBe("FAILED");
+  expect(response.rawData.status).toBe("FAILED");
   expect(response.rawData.error.code).toBe(1005);
 });

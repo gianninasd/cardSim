@@ -78,7 +78,7 @@ app.post("/", (req: any, res: any) => {
   const processor = new AuthProcessor();
   const response: CardResponse = processor.process( cardRequest );
 
-  console.log(`[${req.guid}] Response was ${response.rawData.decision}`);
+  console.log(`[${req.guid}] Response was ${response.rawData.status}`);
 
   res.status(response.httpStatusCode);
   res.set("Content-Type", "application/json");

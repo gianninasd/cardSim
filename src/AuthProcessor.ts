@@ -32,7 +32,7 @@ export class AuthProcessor {
   private generateError(req: CardRequest, code: number, message: string): object {
     const resp: object = {
       id: req.id,
-      decision: "FAILED",
+      status: "FAILED",
       merchantRefNum: req.merchantRefNum,
       txnTime: new Date(),
       settleWithAuth: req.settleWithAuth,
@@ -50,14 +50,14 @@ export class AuthProcessor {
   private generateSuccess(req: CardRequest): object {
     const resp: object = {
       id: req.id,
-      decision: "COMPLETED",
+      status: "COMPLETED",
       merchantRefNum: req.merchantRefNum,
       txnTime: new Date(),
       settleWithAuth: req.settleWithAuth,
       amount: req.amount,
       card: {
-        brand: req.cardBrand,
-        cardEnding: req.cardNum.substr(12)
+        type: req.cardBrand,
+        lastDigits: req.cardNum.substr(12)
       },
       authCode: "A1608Z"
     };
