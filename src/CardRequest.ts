@@ -22,10 +22,16 @@ export class CardRequest {
     req.settleWithAuth = obj.settleWithAuth;
     req.zip = obj.billingDetails.zip;
 
-    req.cardBrand = this.parseBrand(obj.card.cardNum);
-    req.cardNum = obj.card.cardNum;
-    req.cardExpiryMonth = obj.card.cardExpiry.month;
-    req.cardExpiryYear = obj.card.cardExpiry.year;
+    // if card element has a paymentToken provided, then simulate data, else extract them
+    if( obj.card.paymentToken ) {
+      req.cardBrand = "MC";
+      req.cardNum = "5500000000000004";
+    } else {
+      req.cardBrand = this.parseBrand(obj.card.cardNum);
+      req.cardNum = obj.card.cardNum;
+      req.cardExpiryMonth = obj.card.cardExpiry.month;
+      req.cardExpiryYear = obj.card.cardExpiry.year;
+    }
 
     return req;
   }
