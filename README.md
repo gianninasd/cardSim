@@ -2,7 +2,7 @@
 Card Processing simulator service written in Typescript, running on NodeJS. Makes use of Express and Jest open source libraries. In addition there are instructions below on how to run it from within a Docker container.
 
 ## Pre-requisites
-- Install Git
+- Install Git 2.x
 - Install Node.JS 10.x
 
 Now to get the code and install the dependencies perform the following commands:
