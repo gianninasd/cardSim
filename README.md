@@ -9,9 +9,9 @@ Now to get the code and install the dependencies perform the following commands:
 - `git clone https://github.com/gianninasd/cardSim.git`
 - `cd cardSim`
 - Open a console and run the following Git commands to configure Git credentials for this repo
-  - `git config user.email <your email>`
-  - `git config user.name <your name>`
-  - `git config credential.username <your git username>`
+  - `git config --local user.email "<your email>"`
+  - `git config --local user.name "<your name>"`
+  - `git config --local credential.username "<your git username>"`
 - Open a console and run `npm install` to download all dependencies
 
 ## Running application
