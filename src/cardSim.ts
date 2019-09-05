@@ -6,7 +6,7 @@ import {AuthProcessor} from "./AuthProcessor";
 import {AuthValidator} from "./AuthValidator";
 import {CardRequest} from "./CardRequest";
 import {CardResponse} from "./CardResponse";
-import {addDoc, initDB} from "./db";
+import {DataStore} from "./db";
 import {TxnRequest} from "./TxnRequest";
 import {ValidationError} from "./ValidationError";
 
@@ -76,7 +76,7 @@ app.post("/", (req: any, res: any) => {
   const rawData: any = req.body;
   const cardRequest: CardRequest = CardRequest.parse(req.guid, rawData);
   const txnRequest:TxnRequest = TxnRequest.fromRequest(req.ip, cardRequest);
-  addDoc(txnRequest, ( id:string ) => {
+  DataStore.add(txnRequest, ( id:string ) => {
     console.log(`got doc id: ${id}`);
   });
 
@@ -92,7 +92,7 @@ app.post("/", (req: any, res: any) => {
 });
 
 // connect to the MongoDB instance
-initDB( ( error:any ) => {
+DataStore.init( ( error:any ) => {
   if( error != null ) {
     console.log(`Unable to connect to MongoDB: ${error}`);
   } else {
