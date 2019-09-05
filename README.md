@@ -4,6 +4,9 @@ Card Processing simulator service written in Typescript, running on NodeJS. Make
 ## Pre-requisites
 - Install Git 2.x
 - Install Node.JS 10.x
+- Install MongoDB 4.2
+
+For MongoDB, use the Compass application to create a DB called `cardsim` and a collection called `requests`. Update the `dbConfig.ts` as needed.
 
 Now to get the code and install the dependencies perform the following commands:
 - `git clone https://github.com/gianninasd/cardSim.git`
@@ -68,3 +71,4 @@ Below are some reference web sites
 - https://www.typescriptlang.org/
 - https://expressjs.com/
 - https://jestjs.io/en/
+- https://www.mongodb.com/
