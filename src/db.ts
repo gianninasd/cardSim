@@ -1,8 +1,5 @@
 import mongodb from "mongodb";
-
-// configuration details
-const url = "mongodb://localhost:27017";
-const dbName = "cardsim";
+import {dbName, dbUrl} from "./dbConfig";
 
 /**
  * Allows connection to a MongoDB instance and ability to perform CRUD operations.
@@ -29,8 +26,8 @@ export class DataStore {
     };
 
     // Use connect method to connect to the server
-    mongoClient.connect(url, mongoDrvConfig, (error:any, client:mongodb.MongoClient) => {
-      console.log(`Connected successfully to MongoDB: ${url}`);
+    mongoClient.connect(dbUrl, mongoDrvConfig, (error:any, client:mongodb.MongoClient) => {
+      console.log(`Connected successfully to MongoDB: ${dbUrl}`);
 
       DataStore._DB = client.db(dbName);
       return callback( error );
