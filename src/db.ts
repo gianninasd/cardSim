@@ -42,12 +42,32 @@ export class DataStore {
    * @param data the data to insert
    * @param callback function to call once completed, param will contain the row id
    */
-  public static add( data:any, callback:any ) {
-    DataStore._DB.collection("requests").insertOne(data, (error:any, r:any) => {
+  public static add( data:any, callback?:any ) {
+    DataStore._DB.collection("requests").insertOne(data, (error:any, res:any) => {
       if( error ) {
         console.log(`Unable to add document to requests: ${error}`);
       } else {
-        callback( r.insertedId );
+        if( callback ) {
+          callback( res.insertedId );
+        }
+      }
+    });
+  }
+
+  /**
+   * Updates a document record in the DB
+   * @param query the query to identify the row to update
+   * @param data the data to be updated
+   * @param callback optional, function to call once completed
+   */
+  public static update( query:any, data:any, callback?:any ) {
+    DataStore._DB.collection("requests").updateOne(query, {$set: data}, (error:any, res:any) => {
+      if( error ) {
+        console.log(`Unable to update document to requests: ${error}`);
+      } else {
+        if( callback ) {
+          callback( res );
+        }
       }
     });
   }

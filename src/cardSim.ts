@@ -76,13 +76,13 @@ app.post("/", (req: any, res: any) => {
   const rawData: any = req.body;
   const cardRequest: CardRequest = CardRequest.parse(req.guid, rawData);
   const txnRequest:TxnRequest = TxnRequest.fromRequest(req.ip, cardRequest);
-  DataStore.add(txnRequest, ( id:string ) => {
-    console.log(`got doc id: ${id}`);
-  });
+  DataStore.add(txnRequest);
 
   // run thru simulator and generate a response
   const processor = new AuthProcessor();
   const response: CardResponse = processor.process( cardRequest );
+  txnRequest.update(response);
+  DataStore.update({ id: txnRequest.id }, txnRequest);
 
   console.log(`[${req.guid}] Response was ${response.rawData.status}`);
 
@@ -91,12 +91,12 @@ app.post("/", (req: any, res: any) => {
   res.send(response.rawData);
 });
 
-// connect to the MongoDB instance
+// first step is to connect to the MongoDB instance
 DataStore.init( ( error:any ) => {
   if( error != null ) {
     console.log(`Unable to connect to MongoDB: ${error}`);
   } else {
-    // start the application listener
+    // then start the application listener
     app.listen(port, () => {
       const appVer = process.env.npm_package_version;
       console.log(`Card Simulator ${appVer} running on ${os.platform} (${os.release}), listening on port ${port}! `);
