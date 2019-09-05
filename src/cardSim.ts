@@ -6,6 +6,8 @@ import {AuthProcessor} from "./AuthProcessor";
 import {AuthValidator} from "./AuthValidator";
 import {CardRequest} from "./CardRequest";
 import {CardResponse} from "./CardResponse";
+import {addDoc, initDB} from "./db";
+import {TxnRequest} from "./TxnRequest";
 import {ValidationError} from "./ValidationError";
 
 const app = express();
@@ -73,6 +75,10 @@ app.post("/", (req: any, res: any) => {
   // get raw json object and parse it
   const rawData: any = req.body;
   const cardRequest: CardRequest = CardRequest.parse(req.guid, rawData);
+  const txnRequest:TxnRequest = TxnRequest.fromRequest(req.ip, cardRequest);
+  addDoc(txnRequest, ( id:string ) => {
+    console.log(`got doc id: ${id}`);
+  });
 
   // run thru simulator and generate a response
   const processor = new AuthProcessor();
@@ -85,8 +91,15 @@ app.post("/", (req: any, res: any) => {
   res.send(response.rawData);
 });
 
-// start the application listener
-app.listen(port, () => {
-  const appVersion = process.env.npm_package_version;
-  console.log(`Card Simulator ${appVersion} running on ${os.platform} (${os.release}), listening on port ${port}! `);
+// connect to the MongoDB instance
+initDB( ( error:any ) => {
+  if( error != null ) {
+    console.log(`Unable to connect to MongoDB: ${error}`);
+  } else {
+    // start the application listener
+    app.listen(port, () => {
+      const appVer = process.env.npm_package_version;
+      console.log(`Card Simulator ${appVer} running on ${os.platform} (${os.release}), listening on port ${port}! `);
+    });
+  }
 });
