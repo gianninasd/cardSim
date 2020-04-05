@@ -36,6 +36,9 @@
   "devDependencies": {
     "tslint": "^5.18.0",
     "typescript": "^3.5.2",
-    "handlebars": ">=4.3.0"
+    "handlebars": ">=4.3.0",
+    "minimist": ">=0.2.1",
+    "acorn": ">=5.7.4",
+    "kind-of": ">=6.0.3"
   }
 }
