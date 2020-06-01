@@ -48,7 +48,7 @@ Amount | Decision | HTTP Response Code | Error Code | Description
 ------------ | ------------- | ------------- | ------------- | -------------
 5 | FAILED | 400 | 1005 | Transaction declined by the bank
 7 | FAILED | 400 | 1007 | Insufficient funds
-*Anything else* | COMPLETED | 200 | *n/a* | *n/a*
+*Anything else* | COMPLETED | 200 | *n/a* | Successful
 
 To run only the unit tests, from the console window run `npm run test`
 
