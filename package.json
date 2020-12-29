@@ -1,6 +1,6 @@
 {
   "name": "cardsim",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Credit Card Processing Simulator",
   "main": "dist/cardSim.js",
   "scripts": {
@@ -35,11 +35,11 @@
     "node-notifier": ">=8.0.1"
   },
   "devDependencies": {
-    "tslint": "^5.18.0",
-    "typescript": "^3.5.2",
-    "handlebars": ">=4.3.0",
+    "acorn": "^8.0.4",
+    "handlebars": "^4.7.6",
+    "kind-of": ">=6.0.3",
     "minimist": ">=0.2.1",
-    "acorn": ">=5.7.4",
-    "kind-of": ">=6.0.3"
+    "tslint": "^5.20.1",
+    "typescript": "^3.9.7"
   }
 }
