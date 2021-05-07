@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "acorn": "^8.0.4",
-    "handlebars": "^4.7.6",
+    "handlebars": "^4.7.7",
     "kind-of": ">=6.0.3",
     "minimist": ">=0.2.1",
     "tslint": "^5.20.1",
